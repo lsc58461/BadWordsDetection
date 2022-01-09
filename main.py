@@ -34,6 +34,16 @@ async def on_message(message):
     embed = discord.Embed(title = '' , color = 0xFF3636)
     embed.add_field(name='----------    필터링된 채팅    ----------', value = word)
     embed.set_author(name=str(message.author), icon_url=message.author.avatar_url)
+    MyEmbed = Embed(
+        title = "비속어 감지",
+        color = 0xFF4848
+    ).add_field(
+        name = "────────────────────────",
+        value = f"{str(message.author)}님이 [{word}]에서 비속어 [{result}]을(를) 사용하셨습니다.\n────────────────────────",
+        inline = True
+    )
+    channel = client.get_channel(927067418017292339)
+    await channel.send(embed=MyEmbed)
     await message.channel.send('어머')
     await message.channel.send(embed = embed)
     await message.delete()
